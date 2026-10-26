@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <!-- Pengaturan karakter encoding agar mendukung simbol dan teks khusus -->
+    <meta charset="UTF-8">
+    <!-- Viewport berguna agar tampilan web otomatis responsif di berbagai ukuran device/layar HP -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Judul dari dokumen web undangan -->
+    <title>Undangan Pernikahan Amara & Ilham</title>
+    
+    <!-- Import framework Bootstrap 5.3 CSS dari CDN untuk styling dasar dan komponen responsif -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Import pustaka ikon Bootstrap Icons untuk ikon amplop, hati, orang, kalender, dan peta -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    
+    <!-- Menghubungkan file CSS eksternal (UTSNikah.css) untuk kustomisasi tampilan -->
+    <link rel="stylesheet" href="UTSNikah.css">
+</head>
+<body>
+
+    <!-- =========================================================================
+         1. SECTION PENERIMA (OVERLAY SAMPUL UTAMA / HALAMAN DEPAN)
+         Penjelasan Presentasi:
+         Section ini berfungsi sebagai layar penyambut/pembuka (overlay) yang menutupi 
+         seluruh layar (min-vh-100) sebelum tamu menekan tombol "Buka Undangan".
+         ========================================================================= -->
+    <section id="penerima" class="penerima-overlay d-flex flex-column justify-content-center align-items-center text-center text-white min-vh-100">
+        <!-- Card kotak semitransparan di tengah halaman pembuka -->
+        <div class="content p-4 rounded bg-dark bg-opacity-50">
+            <h5 class="text-uppercase mb-3">Undangan Pernikahan</h5>
+            <!-- Nama pasangan dengan font gaya tulisan tangan (font-serif) -->
+            <h1 class="display-4 font-serif">Amara & Ilham</h1>
+            <p class="mt-4 mb-1">Kepada Yth. Bapak/Ibu/Saudara/i:</p>
+            <!-- Elemen ini diisi secara dinamis oleh JS berdasarkan URL parameter ?to=NamaTamu -->
+            <h3 id="nama-penerima" class="fw-bold my-2 text-warning">Nama Tamu Undangan</h3>
+            <p class="small text-light">Kami Mengundang Anda Untuk Hadir Di Acara Pernikahan Kami.</p>
+            <!-- Tombol Buka Undangan yang memicu efek fade-out dan pemutaran audio otomatis -->
+            <button id="btn-buka" class="btn btn-warning mt-3 px-4 rounded-pill fw-bold" type="button">
+                <i class="bi bi-envelope-open-fill me-2"></i>Buka Undangan
+            </button>
+        </div>
+    </section>
+
+    <!-- =========================================================================
+         KONTEN UTAMA UNDANGAN (MAIN CONTAINER)
+         Awalnya disembunyikan dengan class Bootstrap 'd-none'. Akan ditampilkan oleh 
+         JavaScript setelah tombol 'Buka Undangan' diklik.
+         ========================================================================= -->
+    <main id="konten-utama" class="d-none">
+
+        <!-- =====================================================================
+             NAVBAR NAVIGASI BAWAH (FIXED BOTTOM NAVBAR)
+             Penjelasan Presentasi:
+             Navbar melayang tetap di posisi bawah layar (fixed-bottom) untuk berpindah 
+             menu (Sampul, Mempelai, Acara, Peta) tanpa sistem scroll halaman.
+             ===================================================================== -->
+        <nav class="navbar navbar-expand navbar-dark bg-dark fixed-bottom shadow">
+            <div class="container justify-content-center">
+                <ul class="navbar-nav nav-justified w-100 max-w-md">
+                    <!-- Tab Menu 1: Sampul -->
+                    <li class="nav-item">
+                        <a class="nav-link text-center active" href="#" data-target="sampul">
+                            <i class="bi bi-heart-fill d-block"></i>
+                            <span class="small">Sampul</span>
+                        </a>
+                    </li>
+                    <!-- Tab Menu 2: Mempelai -->
+                    <li class="nav-item">
+                        <a class="nav-link text-center" href="#" data-target="mempelai">
+                            <i class="bi bi-people-fill d-block"></i>
+                            <span class="small">Mempelai</span>
+                        </a>
+                    </li>
+                    <!-- Tab Menu 3: Acara -->
+                    <li class="nav-item">
+                        <a class="nav-link text-center" href="#" data-target="acara">
+                            <i class="bi bi-calendar-event-fill d-block"></i>
+                            <span class="small">Acara</span>
+                        </a>
+                    </li>
+                    <!-- Tab Menu 4: Peta Lokasi -->
+                    <li class="nav-item">
+                        <a class="nav-link text-center" href="#" data-target="peta">
+                            <i class="bi bi-geo-alt-fill d-block"></i>
+                            <span class="small">Peta</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <!-- =====================================================================
+             2. SECTION SAMPUL (KARTU UTAMA DENGAN FOTO PASANGAN)
+             Penjelasan Presentasi:
+             Menampilkan foto full-cover pasangan dalam bingkai kartu berukuran seluler.
+             ===================================================================== -->
+        <section id="sampul" class="menu-section vh-100 d-flex justify-content-center align-items-center p-3">
+            <!-- Frame Kartu Utama -->
+            <div class="simanten-card shadow-lg position-relative overflow-hidden rounded-4">
+                
+                <!-- Foto Pasangan Memenuhi Frame Kartu -->
+                <img src="FotoSampul.jpeg" alt="Amara & Ilham" class="simanten-bg-img">
+                
+                <!-- Frame Bingkai Garis Putih Estetik di dalam Foto -->
+                <div class="simanten-border"></div>
+
+                <!-- Layer Overlay Gradasi Hitam agar Teks Nama Pasangan Jelas Terbaca -->
+                <div class="simanten-overlay d-flex flex-column justify-content-end align-items-center text-center text-white p-4">
+                    <span class="text-uppercase small tracking-wide mb-1 opacity-75">The Wedding of</span>
+                    <h1 class="display-5 font-serif text-white mb-1">Amara & Ilham</h1>
+                    <p class="small text-light mb-2 fw-light">Sabtu, 12 Desember 2026</p>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- =====================================================================
+             3. SECTION MEMPELAI (INFORMASI KEDUA MEMPELAI & ORANG TUA)
+             Penjelasan Presentasi:
+             Menampilkan kaligrafi Bismillah, foto pasangan berdampingan (Pria kiri, Wanita kanan),
+             nama lengkap, dan informasi nama orang tua masing-masing.
+             ===================================================================== -->
+        <section id="mempelai" class="menu-section vh-100 d-flex justify-content-center align-items-center p-3 d-none">
+            <!-- Frame Kartu Utama Mempelai (Ukuran & Posisi Presisi dengan Sampul) -->
+            <div class="card-mempelai-simanten shadow-lg position-relative overflow-hidden rounded-4 position-relative">
+                
+                <!-- Frame Bingkai Garis Emas Tipis -->
+                <div class="mempelai-border-gold"></div>
+
+                <!-- Konten Teks dan Foto Mempelai -->
+                <div class="content-mempelai text-center position-relative z-3">
+                    <!-- Gambar Kaligrafi Bismillah di bagian atas -->
+                    <img src="Bismillah.png" alt="Bismillah" class="img-bismillah mb-1">
+
+                    <!-- Kalimat Salam & Pembuka -->
+                    <p class="text-salam mb-1 fw-semibold">Assalamu'alaikum Warahmatullahi Wabarakatuh</p>
+                    <p class="text-pembuka text-muted mb-2">
+                        Dengan memohon rahmat dan ridho Allah SWT, mohon doa'a restu Bapak/Ibu/Saudara/i dalam rangka melangsungkan pernikahan putra-putri kami:
+                    </p>
+
+                    <!-- Foto Mempelai Berdampingan secara Horizontal -->
+                    <div class="d-flex justify-content-center align-items-center gap-2 mb-2">
+                        <!-- Foto Mempelai Pria (Sebelah Kiri) -->
+                        <div class="foto-frame">
+                            <img src="MempelaiPria.jpeg" alt="Ilham" class="img-mempelai-square">
+                        </div>
+                        <!-- Foto Mempelai Wanita (Sebelah Kanan) -->
+                        <div class="foto-frame">
+                            <img src="MempelaiWanita.jpeg" alt="Amara" class="img-mempelai-square">
+                        </div>
+                    </div>
+
+                    <!-- Detail Mempelai Pria (Ilham) -->
+                    <div class="mempelai-detail mb-1">
+                        <h4 class="nama-mempelai font-serif text-warning-emphasis mb-0">Ilham, S.Kom.</h4>
+                        <p class="ortu-title mb-0">Putra Keempat</p>
+                        <p class="ortu-nama text-muted mb-0">Bapak Fulan & Ibu Fulanah</p>
+                    </div>
+
+                    <!-- Simbol Karakter Pemisah '&' -->
+                    <h5 class="font-serif text-warning-emphasis my-0 fw-bold">&</h5>
+
+                    <!-- Detail Mempelai Wanita (Amara) -->
+                    <div class="mempelai-detail">
+                        <h4 class="nama-mempelai font-serif text-warning-emphasis mb-0">Amara, S.A.P.</h4>
+                        <p class="ortu-title mb-0">Putri Kedua</p>
+                        <p class="ortu-nama text-muted mb-0">Bapak Fulan & Ibu Fulanah</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- =====================================================================
+             4. SECTION ACARA (RANGKAIAN ACARA AKAD NIKAH & RESEPSI)
+             Penjelasan Presentasi:
+             Menampilkan jadwal waktu, tanggal dengan penanda lingkaran hitam khas Simanten, 
+             serta lokasi pelaksanaan Akad Nikah dan Resepsi.
+             ===================================================================== -->
+        <section id="acara" class="menu-section vh-100 d-flex justify-content-center align-items-center p-3 d-none">
+            <!-- Frame Kartu Utama Acara (Hapus my-auto agar posisi margin-bottom bekerja optimal) -->
+            <div class="card-acara-simanten shadow-lg position-relative overflow-hidden rounded-4">
+                
+                <!-- Frame Bingkai Garis Emas Tipis -->
+                <div class="acara-border-gold"></div>
+
+                <div class="content-acara text-center position-relative z-3">
+                    <!-- Judul Utama Rangkaian Acara -->
+                    <h3 class="font-serif text-warning-emphasis fw-bold mb-1 fs-2">Rangkaian Acara</h3>
+                    <hr class="w-25 mx-auto my-2 border-warning">
+
+                    <!-- Rincian Acara 1: Akad Nikah -->
+                    <div class="acara-item mb-2">
+                        <h4 class="font-serif text-warning-emphasis mb-1 fs-3">Akad Nikah</h4>
+                        <div class="d-flex justify-content-center align-items-center gap-2 mb-1">
+                            <span class="small fw-semibold text-dark">Sabtu</span>
+                            <!-- Lencana Lingkaran Hitam untuk Penanda Tanggal -->
+                            <div class="badge-tanggal rounded-circle bg-dark text-white fw-bold d-flex justify-content-center align-items-center">
+                                12
+                            </div>
+                            <span class="small fw-semibold text-dark">Desember 2026</span>
+                        </div>
+                        <p class="jam-text text-muted mb-1">08.00 WIB - Selesai</p>
+                        <p class="lokasi-text text-dark fw-semibold mb-0">Perum BULOG Kanwil Jatim</p>
+                    </div>
+
+                    <hr class="w-50 mx-auto my-2 border-secondary opacity-25">
+
+                    <!-- Rincian Acara 2: Resepsi -->
+                    <div class="acara-item">
+                        <h4 class="font-serif text-warning-emphasis mb-1 fs-3">Resepsi</h4>
+                        <div class="d-flex justify-content-center align-items-center gap-2 mb-1">
+                            <span class="small fw-semibold text-dark">Sabtu</span>
+                            <!-- Lencana Lingkaran Hitam untuk Penanda Tanggal -->
+                            <div class="badge-tanggal rounded-circle bg-dark text-white fw-bold d-flex justify-content-center align-items-center">
+                                12
+                            </div>
+                            <span class="small fw-semibold text-dark">Desember 2026</span>
+                        </div>
+                        <p class="jam-text text-muted mb-1">11.00 WIB - Selesai</p>
+                        <p class="lokasi-text text-dark fw-semibold mb-0">Perum BULOG Kanwil Jatim</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- =====================================================================
+             5. SECTION PETA (GOOGLE MAPS EMBEDDED)
+             Penjelasan Presentasi:
+             Menampilkan peta lokasi interaktif dari Google Maps beserta tombol navigasi cepat.
+             ===================================================================== -->
+        <section id="peta" class="menu-section vh-100 d-flex flex-column justify-content-center align-items-center text-center p-3 d-none">
+            <div class="container max-w-md my-auto">
+                <h3 class="fw-bold text-uppercase bg-white bg-opacity-75 d-inline-block px-3 py-1 rounded-pill shadow-sm mb-2 small">Lokasi Acara</h3>
+                <p class="text-dark fw-semibold small mb-2">Perum BULOG Kanwil Jatim</p>
+                
+                <!-- Iframe Google Maps yang disesuaikan rasionya (16x9) -->
+                <div class="ratio ratio-16x9 shadow rounded-4 overflow-hidden mb-3 border border-2 border-white">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7914.463604964259!2d112.72225529142735!3d-7.327841718535382!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd7fb69df448c4f%3A0x67fda9681c01bfb4!2sPerum%20BULOG%20Kanwil%20Jatim!5e0!3m2!1sid!2sid!4v1793018028096!5m2!1sid!2sid" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="strict-origin-when-cross-origin">
+                    </iframe>
+                </div>
+
+                <!-- Tombol Tautan Langsung untuk Membuka Aplikasi Google Maps di HP -->
+                <a href="https://maps.app.goo.gl/B8hoFMp1tHYmUpUF8" target="_blank" class="btn btn-danger btn-sm px-4 rounded-pill shadow-sm">
+                    <i class="bi bi-box-arrow-up-right me-2"></i>Buka di Google Maps
+                </a>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- =========================================================================
+         ELEMEN AUDIO DAN TOMBOL MUSIK FLOATING (HARUS DI ATAS SCRIPT JS)
+         Penjelasan Presentasi:
+         Elemen audio ditaruh di luar tag <main> agar musik tidak pernah berhenti/terputus 
+         saat tamu berpindah-pindah antar menu tab navbar.
+         ========================================================================= -->
+    <audio id="bg-music" loop>
+        <!-- Memanggil file musik lagu 'Beautiful in White' format .mp3 -->
+        <source src="Westlife - Beautiful in White.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Tombol Musik Melayang yang Selalu Tampil di Pojok Kanan Bawah Layar -->
+    <button id="btn-music" class="btn-music-float shadow" type="button" aria-label="Play/Pause Music">
+        <!-- Ikon piringan hitam dengan animasi berputar spin-icon -->
+        <i id="music-icon" class="bi bi-disc-fill spin-icon"></i>
+    </button>
+
+    <!-- =========================================================================
+         PEMANGGILAN SCRIPT JAVASCRIPT
+         Ditaruh di paling bawah dokumen HTML agar seluruh DOM terurai sempurna lebih dulu.
+         ========================================================================= -->
+    <!-- Script JS Bundle dari Bootstrap 5.3 CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Script JS Utama Kustomisasi (UTSNikah.js) -->
+    <script src="UTSNikah.js"></script>
+
+</body>
+</html>

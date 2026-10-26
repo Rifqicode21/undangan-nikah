@@ -1,0 +1,336 @@
+/* ===================================================
+   IMPORT GOOGLE FONTS ELEGANT
+   Penjelasan: Mengimpor jenis huruf 'Sacramento' (tipe tulisan tangan estetik) 
+   dan 'Work Sans' (tipe sans-serif modern & bersih)[cite: 25].
+   =================================================== */
+@import url('https://fonts.googleapis.com/css2?family=Sacramento&family=Work+Sans:wght@300;400;600&display=swap');
+
+/* ===================================================
+   1. PENGATURAN DASAR & BACKGROUND UTAMA
+   =================================================== */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    /* overflow: hidden digunakan untuk mematikan scroll layar utama, 
+       karena halaman menggunakan konsep tab navbar (Single Page Application) */
+    overflow: hidden !important; 
+    font-family: 'Work Sans', sans-serif;
+    /* Mengatur latar belakang halaman utama dengan gambar bgJendela.jpg */
+    background-image: url('bgJendela.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* Class Kustom untuk Teks Ber-font Serif / Tulisan Tangan Estetik */
+.font-serif {
+    font-family: 'Sacramento', cursive;
+}
+
+/* Helper Class untuk membatasi lebar maksimum elemen */
+.max-w-md {
+    max-width: 450px;
+}
+
+/* Helper Class untuk mengatur spasi/jarak antar huruf */
+.tracking-wide {
+    letter-spacing: 2px;
+}
+
+/* ===================================================
+   2. SECTION PENERIMA (OVERLAY SAMPUL UTAMA)
+   =================================================== */
+.penerima-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 9999; /* Z-index tinggi agar overlay berada di paling depan layar */
+    /* Memberikan efek lapisan gradasi gelap di atas gambar background */
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+                url('bgJendela.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    /* Memberikan efek transisi kehalusan saat halaman pembuka hilang (fade-out) */
+    transition: opacity 0.5s ease-in-out;
+}
+
+/* ===================================================
+   3. NAVBAR NAVIGASI BAWAH
+   =================================================== */
+.navbar {
+    z-index: 1030; /* Memastikan navbar melayang di atas kartu konten */
+}
+
+/* Style default ikon dan teks link pada navbar */
+.navbar-nav .nav-link {
+    color: rgba(255, 255, 255, 0.6);
+    transition: color 0.3s ease;
+}
+
+/* Style saat kursor berada di atas menu atau ketika menu sedang aktif dibuka */
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link.active {
+    color: #ffc107 !important; /* Warna kuning emas untuk indikator menu aktif */
+}
+
+/* ===================================================
+   4. SECTION SAMPUL (GAYA SIMANTEN)
+   =================================================== */
+/* Container Kartu Utama Sampul */
+.simanten-card {
+    width: 100%;
+    max-width: 380px;            /* Mensimulasikan dimensi lebar HP di layar PC */
+    height: 75vh;               /* Tinggi relatif 75% dari tinggi layar */
+    max-height: 600px;          /* Batas tinggi maksimum kartu */
+    background-color: #000;
+    margin-bottom: 4rem !important; /* Mendorong kartu ke atas agar tidak menempel navbar */
+}
+
+/* Mengatur foto pasangan agar memenuhi seluruh area kartu secara proporsional */
+.simanten-bg-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+/* Bingkai Garis Putih Tipis Estetik di Dalam Foto */
+.simanten-border {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    right: 15px;
+    bottom: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 12px;
+    pointer-events: none; /* Pointer-events none agar garis tidak menghalangi klik */
+    z-index: 2;
+}
+
+/* Layer Gradasi Hitam Transparan dari Bawah ke Atas */
+.simanten-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.2) 50%, rgba(0, 0, 0, 0) 100%);
+    z-index: 3;
+}
+
+/* ===================================================
+   5. SECTION MEMPELAI (UKURAN & POSISI DISAMAKAN DENGAN SAMPUL)
+   =================================================== */
+.card-mempelai-simanten {
+    width: 100%;
+    max-width: 380px;            /* Dimensi lebar disamakan persis dengan .simanten-card */
+    height: 75vh;               /* Tinggi relatif disamakan persis dengan .simanten-card */
+    max-height: 600px;          /* Maksimum tinggi disamakan dengan .simanten-card */
+    margin-bottom: 4rem !important; /* Posisi terangkat disamakan persis dengan Sampul */
+    background: #ffffff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 1.25rem !important;
+}
+
+/* Bingkai Garis Emas Tipis di Dalam Kartu Mempelai */
+.mempelai-border-gold {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    right: 12px;
+    bottom: 12px;
+    border: 1px solid rgba(212, 160, 23, 0.4);
+    border-radius: 12px;
+    pointer-events: none;
+    z-index: 2;
+}
+
+/* Pengaturan Gambar Kaligrafi Bismillah */
+.img-bismillah {
+    max-width: 135px;
+    height: auto;
+    object-fit: contain;
+    margin-bottom: 0.2rem !important;
+}
+
+/* Pengaturan Ukuran Teks Salam Pembuka */
+.text-salam {
+    font-size: 0.72rem;
+    color: #333;
+    margin-bottom: 0.2rem !important;
+}
+
+/* Pengaturan Teks Paragraf Pembuka Undangan */
+.text-pembuka {
+    font-size: 0.62rem;
+    line-height: 1.25;
+    padding: 0 5px;
+    margin-bottom: 0.4rem !important;
+}
+
+/* Frame Bingkai Foto Persegi Mempelai dengan Border Emas */
+.foto-frame {
+    width: 90px;   /* Ukuran lebar foto mempelai */
+    height: 100px; /* Ukuran tinggi foto mempelai */
+    padding: 2px;
+    background: #fff;
+    border: 1px solid #d4a017;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.12);
+}
+
+/* Mengatur Gambar Foto Mempelai agar Terisi Penuh tanpa Distorsi */
+.img-mempelai-square {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Pengaturan Warna dan Ukuran Nama Pasangan Mempelai */
+.nama-mempelai {
+    font-size: 1.15rem;
+    color: #c59b27 !important; /* Warna kuning emas estetik */
+    margin-bottom: 0.1rem !important;
+}
+
+/* Style Teks Urutan Anak */
+.ortu-title {
+    font-size: 0.65rem;
+    font-weight: 600;
+    color: #555;
+    margin-bottom: 0 !important;
+}
+
+/* Style Teks Nama Orang Tua */
+.ortu-nama {
+    font-size: 0.62rem;
+    margin-bottom: 0 !important;
+}
+
+/* Media Query Responsif untuk HP / Layar Berukuran Pendek */
+@media (max-height: 670px) {
+    .card-mempelai-simanten {
+        max-height: 520px;
+        margin-bottom: 3.5rem !important;
+    }
+    .img-bismillah {
+        max-width: 115px;
+    }
+    .foto-frame {
+        width: 75px;
+        height: 85px;
+    }
+    .nama-mempelai {
+        font-size: 1rem;
+    }
+}
+
+/* ===================================================
+   6. SECTION ACARA (UKURAN & POSISI DISAMAKAN DENGAN SAMPUL)
+   =================================================== */
+.card-acara-simanten {
+    width: 100%;
+    max-width: 380px;            /* Dimensi lebar disamakan persis dengan .simanten-card */
+    height: 75vh;               /* Tinggi relatif disamakan persis dengan .simanten-card */
+    max-height: 580px;          /* Batas tinggi maksimum disesuaikan */
+    margin-bottom: 5.5rem !important; /* Nilai terangkat ditingkatkan agar posisi naik tinggi di atas navbar */
+    background: #ffffff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 1.25rem !important;
+}
+
+/* Bingkai Garis Emas Tipis pada Kartu Acara */
+.acara-border-gold {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    right: 12px;
+    bottom: 12px;
+    border: 1px solid rgba(212, 160, 23, 0.4);
+    border-radius: 12px;
+    pointer-events: none;
+    z-index: 2;
+}
+
+/* Lencana Lingkaran Hitam untuk Tanggal khas Simanten */
+.badge-tanggal {
+    width: 36px;
+    height: 36px;
+    font-size: 1rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+}
+
+/* Tipografi Teks Waktu Pelaksanaan */
+.jam-text {
+    font-size: 0.72rem;
+}
+
+/* Tipografi Teks Nama Lokasi Tempat Acara */
+.lokasi-text {
+    font-size: 0.75rem;
+}
+
+/* Media Query Responsif Acara untuk HP / Layar Pendek */
+@media (max-height: 670px) {
+    .card-acara-simanten {
+        max-height: 500px;
+        margin-bottom: 4.5rem !important;
+    }
+    .badge-tanggal {
+        width: 30px;
+        height: 30px;
+        font-size: 0.9rem;
+    }
+}
+
+/* ===================================================
+   7. FLOATING MUSIC BUTTON (POJOK KANAN BAWAH)
+   =================================================== */
+/* Styling Tombol Pemutar Musik Mengambang di Atas Navbar */
+.btn-music-float {
+    position: fixed;            /* Posisi konstan melayang di layar */
+    right: 20px;                /* Jarak dari batas kanan layar */
+    bottom: 85px;               /* Posisinya di atas Navbar bawah (Navbar = 56px) */
+    z-index: 1040;              /* Memastikan tombol berada di atas elemen kartu lainnya */
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;          /* Membentuk lingkaran sempurna */
+    background-color: #d4a017;  /* Warna latar emas sesuai tema */
+    color: #ffffff;
+    border: 2px solid #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+/* Efek Hover saat Kursor Diarahkan ke Tombol Musik */
+.btn-music-float:hover {
+    transform: scale(1.1);       /* Membesar sedikit saat di-hover */
+    background-color: #b58711;
+}
+
+/* Animasi Putaran 360 Derajat untuk Ikon Piringan Hitam */
+.spin-icon {
+    animation: spin 3s linear infinite;
+}
+
+/* Class 'paused' Ditambahkan oleh JS saat Musik Di-pause untuk Menghentikan Animasi Putar */
+.spin-icon.paused {
+    animation-play-state: paused;
+}
+
+/* Keyframes Definisi Gerakan Putar 360 Derajat */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
